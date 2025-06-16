@@ -1,38 +1,76 @@
-# AI Models for COVID-19 Forecasting
+# AI\_COVID19\_Forecast\_Models
 
-This repository contains Python implementations for:
-- ARIMA
-- LSTM
-- Hybrid ARIMA-LSTM
+Forecasting Malaysia’s daily COVID-19 cases from 1 April 2021 to 18 September 2021 using ARIMA, LSTM, and a hybrid ARIMA-LSTM model.
 
-These models were used to forecast daily new COVID-19 cases in Malaysia. The implementation includes model training, evaluation, and rolling forecasting.
+## Dataset Description
 
-## 📁 Files
+* **File**: `RESEARCH DATA.csv`
 
-- `ARIMA_Model.py`: Forecasting using ARIMA
-- `LSTM_Model.py`: Forecasting using LSTM
-- `Hybrid_ARIMA_LSTM_Model.py`: Combined ARIMA and LSTM model
-- `requirements.txt`: Python libraries needed
+* **Format**: CSV file with the following columns:
 
-> Note: Dataset file `RESEARCH DATA.xlsx` is not included in this repository. Please contact the author for access.
+  * `date`: Date in `YYYY-MM-DD` format
+  * `cases`: Daily confirmed COVID-19 cases in Malaysia
 
-## 🛠 Requirements
+* **Preprocessing**: Date is parsed automatically by scripts; no manual preprocessing required.
 
-Python 3.8 or higher
+## Environment Setup
 
-Install required libraries with:
+To run the models, follow these steps:
+
+1. **Clone the repository**:
+
+```bash
+git clone https://github.com/Awang-nawi/AI_COVID19_Forecast_Models.git
+cd AI_COVID19_Forecast_Models
+```
+
+2. **Install required dependencies**:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🚀 Running the Code
+## Running the Models
 
-Make sure `RESEARCH DATA.xlsx` is in the same folder as the scripts, then run for example:
+### ARIMA Model
 
 ```bash
-python ARIMA_Model.py
+python arima_model.py --input data/data.csv --output results/arima_forecast.csv
 ```
 
-## 📬 Contact
+### LSTM Model
 
-For questions or dataset access, please contact the corresponding author.
+```bash
+python lstm_model.py --input data/data.csv --output results/lstm_forecast.csv
+```
+
+### Hybrid ARIMA-LSTM Model
+
+```bash
+python hybrid_model.py --input data/data.csv --output results/hybrid_forecast.csv
+```
+
+## Output Files
+
+* Forecast results saved as `.csv` files in the `results/` directory.
+* Plots (time series, error metrics) saved in `results/plots/`.
+
+## Requirements
+
+Dependencies are listed in `requirements.txt`. Key packages include:
+
+* `pandas`
+* `numpy`
+* `statsmodels`
+* `matplotlib`
+* `scikit-learn`
+* `torch` (for LSTM model)
+
+## Reproducibility
+
+* Recommended Python version: **3.8+**
+* To ensure consistent results in LSTM-based models, you can use a random seed:
+
+```bash
+python lstm_model.py --seed 42
+```
